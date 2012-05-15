@@ -1,10 +1,14 @@
 package com.chowaniok.datechecker;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Formatter;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
@@ -21,15 +25,10 @@ public class Util {
 	static {
 	    try {
 	      FileHandler fh = new FileHandler("TestLog.log");
-//	      fh.setFormatter(new SimpleFormatter());
 	      fh.setFormatter(new Formatter() {
 	         public String format(LogRecord rec) {
 	            StringBuffer buf = new StringBuffer(1000);
-//	            buf.append(new java.util.Date());
-//	            buf.append(' ');
-//	            buf.append(rec.getLevel());
 	            buf.append(formatMessage(rec));
-//	            buf.append(' ');
 	            buf.append('\n');
 	            return buf.toString();
 	            }

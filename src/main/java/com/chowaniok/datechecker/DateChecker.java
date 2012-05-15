@@ -2,17 +2,9 @@ package com.chowaniok.datechecker;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
 import java.util.logging.Logger;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.joda.time.DateTime;
 
 public class DateChecker {
@@ -28,14 +20,12 @@ public class DateChecker {
 			File file = new File(dir.getCanonicalFile(), list[i]);
 			if (file.isDirectory()) {
 				String dateString = list[i].toString();
-				DateTime dateTimeFile = Util.getInstance().getCalendarFromName(
-						dateString);
+				DateTime dateTimeFile = Util.getInstance().getCalendarFromName(dateString);
 
 				if (dateTime.isAfter(dateTimeFile)) {
 					dateTime = new DateTime(dateTimeFile);
 				}
- 				while (Util.getInstance().checkForMissingDate(dateTime,
-						dateTimeFile)) {
+ 				while (Util.getInstance().checkForMissingDate(dateTime, dateTimeFile)) {
 					dateTime = Util.getInstance().rollDate(dateTime);
 				}
 				Util.getInstance().checkFiles(file);
@@ -48,10 +38,10 @@ public class DateChecker {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		DateTime dateTime = new DateTime();
+//		DateTime dateTime = new DateTime();
 		// System.out.println(day);
 
-		new DateChecker().checkDirs("/Users/marek/tmp/trading/data/2011");
+		new DateChecker().checkDirs("/Volumes/Public/sorted/Trading/Data/2011");
 		//new DateChecker().checkDirs("/Volumes/2TSamsung/trading/data/NT7-data/2010");
 	}
 
